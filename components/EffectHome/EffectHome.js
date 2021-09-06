@@ -1,23 +1,31 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import EffectContainer from './EffectContainer';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+
 import CardExpansion from './CardExpansion/CardExpansion';
 
-const Stack = createNativeStackNavigator();
+const TopTab = createMaterialTopTabNavigator();
 
 export default function EffectHome() {
   return (
-    <Stack.Navigator initialRouteName="EffectContainer">
-      <Stack.Screen
-        name="EffectContainer"
-        component={EffectContainer}
-        options={{headerTitle: "Effect Main Page"}}
-      />
-      <Stack.Screen
+    <TopTab.Navigator
+      initialRouteName="CardExpansion"
+      screenOptions={{
+        tabBarActiveTintColor: '#fff',
+        tabBarLabelStyle: {
+          fontSize: 14
+        },
+        tabBarStyle: {
+          backgroundColor: '#6518F4',
+        },
+      }}>
+      <TopTab.Screen
         name="CardExpansion"
         component={CardExpansion}
-        options={({route}) => ({title: route.params.title})}
+        options={{
+          tabBarLabel: '卡片展开效果',
+        }}
       />
-    </Stack.Navigator>
+      <TopTab.Screen name="tab 2" component={CardExpansion} />
+    </TopTab.Navigator>
   );
 }
